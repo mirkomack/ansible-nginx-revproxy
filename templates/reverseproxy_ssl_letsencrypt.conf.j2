@@ -32,6 +32,7 @@ server {
    server_name {{ item.value.domains | join(' ') }};
 
 {% if item.value.hsts_max_age is defined %}
+   proxy_hide_header Strict-Transport-Security;
    add_header Strict-Transport-Security "max-age={{ item.value.hsts_max_age }}; preload" always;
 {% endif %}
 
